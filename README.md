@@ -278,7 +278,7 @@ For ex:
 
 ## 🐳 Deploy with Docker Compose
 
-Pre-compiled images are available via [the official docker container on DockerHub](https://hub.docker.com/r/timothyjmiller/cloudflare-ddns).
+Pre-compiled images are available via [the official docker container on DockerHub](https://hub.docker.com/r/ssafari/cloudflare-ddns).
 
 Modify the host file path of config.json inside the volumes section of docker-compose.yml.
 
@@ -286,7 +286,7 @@ Modify the host file path of config.json inside the volumes section of docker-co
 version: '3.9'
 services:
   cloudflare-ddns:
-    image: timothyjmiller/cloudflare-ddns:latest
+    image: ssafari/cloudflare-ddns:latest
     container_name: cloudflare-ddns
     security_opt:
       - no-new-privileges:true
@@ -407,7 +407,7 @@ Recommended for production
 ### Run the locally compiled version
 
 ```bash
-docker run -d timothyjmiller/cloudflare_ddns:latest
+docker run -d ssafari/cloudflare_ddns:latest
 ```
 
 ## Supported Platforms

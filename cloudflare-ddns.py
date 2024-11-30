@@ -62,25 +62,21 @@ def getIPs():
     if ipv4_enabled:
         try:
             a = requests.get(
-                "https://1.1.1.1/cdn-cgi/trace").text.split("\n")
-            a.pop()
-            a = dict(s.split("=") for s in a)["ip"]
+                "https://api.ipify.org?format=json'").text
         except Exception:
             global shown_ipv4_warning
             if not shown_ipv4_warning:
                 shown_ipv4_warning = True
-                print("🧩 IPv4 not detected via 1.1.1.1, trying 1.0.0.1")
+                print("🧩 IPv4 not detected via ipify api, trying getmyip")
             # Try secondary IP check
             try:
                 a = requests.get(
-                    "https://1.0.0.1/cdn-cgi/trace").text.split("\n")
-                a.pop()
-                a = dict(s.split("=") for s in a)["ip"]
+                    "https://ipv4.getmyip.dev/").text
             except Exception:
                 global shown_ipv4_warning_secondary
                 if not shown_ipv4_warning_secondary:
                     shown_ipv4_warning_secondary = True
-                    print("🧩 IPv4 not detected via 1.0.0.1. Verify your ISP or DNS provider isn't blocking Cloudflare's IPs.")
+                    print("🧩 IPv4 not detected getmyip. Verify your ISP or DNS provider isn't blocking these services.")
                 if purgeUnknownRecords:
                     deleteEntries("A")
     if ipv6_enabled:
